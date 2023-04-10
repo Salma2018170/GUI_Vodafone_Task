@@ -11,16 +11,17 @@ import pages.IphoneCategoryPage;
 import pages.ItemDetailsPage;
 import pages.ShoppingCartPage;
 
+import java.io.IOException;
+
 public class TestCase1 extends Base {
     HomePage homePage;
     IphoneCategoryPage iphoneCategoryPage;
     ItemDetailsPage itemDetailsPage;
     ShoppingCartPage shoppingCartPage;
-    String URL ="https://eshop.vodafone.com.eg/shop#/home";
     @Given("User go to Vodafone Shop website")
-    public void user_go_to_vodafone_shop_website() {
+    public void user_go_to_vodafone_shop_website() throws IOException {
         setUp();
-        driver.navigate().to(URL);
+        driver.navigate().to( properties.getProperty("URL"));
         homePage=new HomePage(driver);
     }
     @When("User select language as English , Go to Shop By Brand section and select Iphone")

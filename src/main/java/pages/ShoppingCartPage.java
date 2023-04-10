@@ -1,10 +1,12 @@
 package pages;
 
+import basics_funcations.PagesBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class ShoppingCartPage {
+public class ShoppingCartPage extends PagesBase {
     private WebDriver driver;
     //Element
     private By checkOutButton =By.xpath("/html/body/app-root/div/app-shoping-cart/div/div[1]/div[2]/div[2]/div[2]/div/div[3]/button") ;
@@ -23,16 +25,18 @@ public class ShoppingCartPage {
     private By continueButtonSecond=By.id("shippingAddressContinue");
     private By errorMessage=By.xpath("//*[@id=\"collapseTwo\"]/form/div/div/div[1]/div[1]/app-alert/div/div/div/div[2]/div/div/div");
     public ShoppingCartPage(WebDriver driver){
+        super(driver);
         this.driver=driver;
     }
     public void clickOnCheckout(){
+
         driver.findElement(checkOutButton).click();
     }
-    public void selectDeliveryOptions(){
+    public void selectDeliveryOptions(String cityName,String townName){
         Select cityDropDown=new Select(driver.findElement(cityField));
-        cityDropDown.selectByValue("0");
+        cityDropDown.selectByVisibleText(cityName);
         Select townDropDown=new Select(driver.findElement(townField));
-        townDropDown.selectByVisibleText("Ain Shams");
+        townDropDown.selectByVisibleText(townName);
         driver.findElement(addressField).click();
     }
     public void setStreetNameField(String streetName){
@@ -48,15 +52,22 @@ public class ShoppingCartPage {
         driver.findElement(apartmentNOField).sendKeys(apartmentNO);
     }
     public void setLandMarkField(String landMark){
+
         driver.findElement(landMarkField).sendKeys(landMark);
     }
     public void setAddressNameField(String addressName){
+
         driver.findElement(addressNameField).sendKeys(addressName);
     }
     public void clickOnFirstContinue(){
-        driver.findElement(continueButtonFirst).click();
+        driver.findElement(By.xpath("/html/body/app-root/div/app-cookie/div/div/p/i")).click();
+        WebElement element=driver.findElement(continueButtonFirst);
+        waitForElement(element);
+        element.click();
+       // driver.findElement(continueButtonFirst).click();
     }
     public void clickOnSecondContinue(){
+
         driver.findElement(continueButtonSecond).click();
     }
      public boolean checkMessage() {

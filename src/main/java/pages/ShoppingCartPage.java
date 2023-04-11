@@ -29,8 +29,9 @@ public class ShoppingCartPage extends PagesBase {
         this.driver=driver;
     }
     public void clickOnCheckout(){
-
-        driver.findElement(checkOutButton).click();
+        WebElement element=driver.findElement(checkOutButton);
+        waitForElement(element);
+        element.click();
     }
     public void selectDeliveryOptions(String cityName,String townName){
         Select cityDropDown=new Select(driver.findElement(cityField));
@@ -40,15 +41,19 @@ public class ShoppingCartPage extends PagesBase {
         driver.findElement(addressField).click();
     }
     public void setStreetNameField(String streetName){
-    driver.findElement(streetNameField).sendKeys(streetName);
+
+        driver.findElement(streetNameField).sendKeys(streetName);
     }
     public void setBuildingNOField(String buildingNO){
+
         driver.findElement(buildingNOField).sendKeys(buildingNO);
     }
     public void setFloorNOField(String floorNO){
+
         driver.findElement(floorNOField).sendKeys(floorNO);
     }
     public void setApartmentNOField(String apartmentNO){
+
         driver.findElement(apartmentNOField).sendKeys(apartmentNO);
     }
     public void setLandMarkField(String landMark){
@@ -60,7 +65,6 @@ public class ShoppingCartPage extends PagesBase {
         driver.findElement(addressNameField).sendKeys(addressName);
     }
     public void clickOnFirstContinue(){
-        driver.findElement(By.xpath("/html/body/app-root/div/app-cookie/div/div/p/i")).click();
         WebElement element=driver.findElement(continueButtonFirst);
         waitForElement(element);
         element.click();

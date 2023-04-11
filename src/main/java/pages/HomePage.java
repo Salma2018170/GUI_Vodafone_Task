@@ -10,7 +10,8 @@ public class HomePage extends PagesBase {
    //Elements
    private By englishField= By.xpath("//a[@id='profile-tab']");
    private By brandSections=By.tagName("h2");
-   private By iphonSectionField=By.xpath("//a[@href='/shop/shopByBrand/Apple']");
+   private By iphonSectionField=By.xpath("/html/body/app-root/div/app-notfound-page/div/app-brand/div/div/div[1]/ul/li[7]/a/div/img");
+
    public HomePage (WebDriver driver){
        super(driver);
        this.driver=driver;
@@ -19,6 +20,8 @@ public class HomePage extends PagesBase {
        WebElement element=driver.findElement(englishField);
        waitForElement(element);
        element.click();
+       //close cookies
+        driver.findElement(By.xpath("/html/body/app-root/div/app-cookie/div/div/p/i")).click();
     }
     public IphoneCategoryPage selectCategory(){
         driver.findElement(brandSections);

@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +20,7 @@ public class Base {
    protected WebDriver driver;
     protected Properties properties = new Properties();
     //@BeforeTest
+
     public void setUp() throws IOException {
         File file = new File("src/main/resources/properties/config.properties");
         FileInputStream stream = new FileInputStream(file);
